@@ -1,0 +1,17 @@
+<% function printThing (thing) { -%>
+  <p><%= thing.a %></p>
+  <p><%= thing.b %></p>
+<% } -%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fortunes</title>
+  </head>
+  <body>
+    <p>Interesting website</p>
+    <% for (var i = 0; i < locals.things.length; i ++) {
+         printThing(locals.things[i])
+       } -%>
+  </body>
+</html>

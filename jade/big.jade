@@ -1,0 +1,13 @@
+doctype html
+
+mixin printThing (thing)
+  p= thing.a
+  p= thing.b
+
+html
+  head
+    title Fortunes
+  body
+    p Interesting website
+    each thing in things
+      +printThing(thing)
