@@ -23,6 +23,7 @@ var locals        = [
 
 var jadeOpts = {  }
 var jadeOpts = { compileDebug: false }
+var jadeOpts = { compileDebug: false, self: true }
 
 var files = fs.readdirSync('jade').map(function (f) {
   return f.split('.')[0]
