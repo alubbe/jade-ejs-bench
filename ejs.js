@@ -41,8 +41,8 @@ for (var i = 0; i < files.length; i ++) {
   var local = locals[i]
 
   var fn = ejsCompiled[i]
-  for (var j = 0; j < 100000; j ++) fn(local)
-  console.time(f)
   for (var j = 0; j < 1000000; j ++) fn(local)
+  console.time(f)
+  for (var j = 0; j < 10000000; j ++) fn(local)
   console.timeEnd(f)
 }
