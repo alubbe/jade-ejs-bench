@@ -2,7 +2,7 @@ var ejs   = require('ejs')
 var fs    = require('fs')
 
 var ejsCompiled   = []
-var locals        = [ 
+var locals        = [
   {
     things: [
       { a: 'blah', b: 'halb' }
@@ -33,7 +33,7 @@ var files = fs.readdirSync('jade').map(function (f) {
 for (var i = 0; i < files.length; i ++) {
   var f = files[i]
   var src = fs.readFileSync('ejs/' + f + '.ejs', 'utf8')
-  ejsCompiled  .push(ejs  .compile(src, ejsOpts))
+  ejsCompiled.push(ejs.compile(src, ejsOpts))
 }
 
 for (var i = 0; i < files.length; i ++) {
@@ -41,6 +41,7 @@ for (var i = 0; i < files.length; i ++) {
   var local = locals[i]
 
   var fn = ejsCompiled[i]
+  for (var j = 0; j < 100000; j ++) fn(local)
   console.time(f)
   for (var j = 0; j < 1000000; j ++) fn(local)
   console.timeEnd(f)

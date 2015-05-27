@@ -2,7 +2,7 @@ var jade  = require('jade')
 var fs    = require('fs')
 
 var jadeCompiled  = []
-var locals        = [ 
+var locals        = [
   {
     things: [
       { a: 'blah', b: 'halb' }
@@ -39,6 +39,7 @@ for (var i = 0; i < files.length; i ++) {
   var local = locals[i]
 
   var fn = jadeCompiled[i]
+  for (var j = 0; j < 100000; j ++) fn(local)
   console.time(f)
   for (var j = 0; j < 1000000; j ++) fn(local)
   console.timeEnd(f)
