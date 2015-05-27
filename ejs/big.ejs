@@ -1,6 +1,6 @@
 <% function printThing (thing) { -%>
-  <p><%= thing.a %></p>
-  <p><%= thing.b %></p>
+  <p><%= (null == thing.a ? "" : thing.a) %></p>
+  <p><%= (null == thing.b ? "" : thing.b) %></p>
 <% } -%>
 
 <!DOCTYPE html>
