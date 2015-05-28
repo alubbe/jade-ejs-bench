@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fortunes</title>
+  </head>
+  <body>
+    <p>Interesting website</p>
+    <% for (var i = 0; i < locals.things.length; i ++) { -%>
+    <%   var thing = locals.things[i] -%>
+      <p><%= (null == thing.a ? "" : escape(thing.a)) %></p>
+      <p><%= (null == thing.b ? "" : escape(thing.b)) %></p>
+    <% } -%>
+  </body>
+</html>
