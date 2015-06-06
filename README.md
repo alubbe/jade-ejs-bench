@@ -9,28 +9,32 @@ Therefore, ejs can show all of its strength and is expected to outperform Jade b
 JSPerf numbers (http://jsperf.com/html-compilers) show that, even in the most synthetic of benchmarks, this should cause only a  10% - 15% drop and less on a 'real' website.
 
 ## Jade
-mixin-escape: 38752ms
-mixin-no-escape: 20419ms
-no-mixin-escape: 22701ms
-no-mixin-no-escape: 6417ms
-simple: 369ms
+- mixin-escape: 44930ms
+- mixin-no-escape: 20945ms
+- no-mixin-escape: 28157ms
+- no-mixin-no-escape: 6409ms
+- simple: 404ms
 
 ## Jade (alubbe optimized branch)
-mixin-escape: 25609ms
-mixin-no-escape: 17433ms
-no-mixin-escape: 9301ms
-no-mixin-no-escape: 2188ms
-simple: 22ms
+- mixin-escape: 7457ms
+- mixin-no-escape: 2305ms
+- no-mixin-escape: 7884ms
+- no-mixin-no-escape: 1313ms
+- simple: 259ms
 
 ## EJS
-mixin-escape: 6533ms
-mixin-no-escape: 1706ms
-no-mixin-excape: 7370ms
-no-mixin-no-escape: 1547ms
-simple: 288ms
+- mixin-escape: 6608ms
+- mixin-no-escape: 1653ms
+- no-mixin-escape: 7710ms
+- no-mixin-no-escape: 1456ms
+- simple: 310ms
 
 # Identified reasons for performance differences
 
-- Jade's mixins are extremely low (currently investigating)
-- Jade's escape method can be improved (fixed in alubbe branch)
-- String concatenation via += is faster than [].join (fixed in alubbe branch)
+- [x] jade's escape function is slower than EJS' (20-30%, fixed with https://github.com/jadejs/jade/pull/1976)
+- [x] Array.join is slower than +=, especially for a small number of items (15-50%, fixed with https://github.com/jadejs/jade/pull/1977)
+- [ ] jade's ```each``` has to perform runtime checks whether to iterate of an array or object, making it a bit slower than two separate iteration implementations (~5%)
+- [x] jade's ```each``` runs in an IIFE for variable scoping, losing quite a bit of performance (~20%, fixed by https://github.com/jadejs/jade/pull/1983)
+- [x] jade's mixin implementation is really, really slow. It runs about 400% slower than EJS' functions. (fixed by https://github.com/jadejs/jade/pull/1982 - turned out to be a v8 bug)
+
+See https://github.com/jadejs/jade/issues/1975
