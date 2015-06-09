@@ -2,24 +2,20 @@ var ejs   = require('ejs-tj')
 var fs    = require('fs')
 
 var ejsCompiled   = []
-var locals        = [
-  {
-    things: [
-      { a: 'blah', b: 'halb' }
-    , { a: 'clah', b: 'halc' }
-    , { a: 'clah', b: 'halc' }
-    , { a: 'blah', b: 'halb' }
-    , { a: 'clah', b: 'halc' }
-    , { a: 'clah', b: 'halc' }
-    , { a: 'clah', b: 'halc' }
-    , { a: 'blah', b: 'halb' }
-    , { a: 'blah', b: 'halb' }
-    , { a: 'clah', b: 'halc' }
-    , { a: 'blah', b: 'halb' }
-    ]
-  }
-, {}
+var things = [
+    { a: 'blah', b: 'halb' }
+  , { a: 'clah', b: 'halc' }
+  , { a: 'clah', b: 'halc' }
+  , { a: 'blah', b: 'halb' }
+  , { a: 'clah', b: 'halc' }
+  , { a: 'clah', b: 'halc' }
+  , { a: 'clah', b: 'halc' }
+  , { a: 'blah', b: 'halb' }
+  , { a: 'blah', b: 'halb' }
+  , { a: 'clah', b: 'halc' }
+  , { a: 'blah', b: 'halb' }
 ]
+var locals = [{things:things}, {things:things}, {things:things}, {things:things}, {}]
 
 // Jade doesn't use with () {} so make it fair
 // Jade also doesn't support dynamic inclusion
